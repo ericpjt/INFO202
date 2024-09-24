@@ -2,5 +2,5 @@
 
 Welcome to my personal website repository!
 
-- Main page: https://ericpjt.github.io/jubilant-fishstick/index.html
-- List page: https://ericpjt.github.io/jubilant-fishstick/list.html
+- Main page: https://ericpjt.github.io/INFO202/index.html
+- List page: https://ericpjt.github.io/INFO202/list.html
