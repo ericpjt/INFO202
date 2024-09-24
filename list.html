@@ -1,70 +1,55 @@
-<!DOCTYPE HTML>  
-<html>  
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <title>Eric Tsai's Movie Collection</title>
+</head>
+<body>
     <header>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="table_style.css">
-        <title>My Webpage Title</title>
-    </header>
-    <body>  
-        <!---Navigation--->
-        <!--This section of code defines the navigation bar at the top of the page.  The classes used here are defined in the style.css file.-->
-        <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-            <div class="container">
-                <!--This code defines the "My Webpage" link in the top right corner of the navigation pane-->
-                <a class="navbar-brand" href="">My Webpage</a>
-                <!--This code defines the "List" link in the top left corner of the navigation pane-->
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="./list.html">List</a></li>
-                </ul>
-            </div>
+        <nav>
+            <a href="index.html" class="logo">Eric Tsai</a>
+            <a href="#" class="nav-link">Movie List</a>
         </nav>
-        <!--This code creates the middle section of the webpage-->
-        <header class="masthead bg-primary text-white text-center">
-            <h1>My Movies</h1>
-        </header>
-        <!--Here is where the table will be loaded in.  The actual table will be loaded in JavaScript.-->
-        <section class="mt-5 text-center">
-            <div id="showDataJSON"></div>
-        </section>
-    </body>
+    </header>
+
+    <main>
+        <article>
+                <h2>About Me</h2>
+                <p>Hi! I'm Eric. I'm a first-year master's student in the MIMS program at UC Berkeley's iSchool. Before becoming a UX Designer, I studied Russian Language in college and had enjoyed a wonderful year during my exchange program in Moscow. The pivot came during a student hackathon, where I discovered great passion in understanding and addressing people's needs. So I took a leap of faith into the world of UX. Plus, I'm a huge fan of Bauhaus ethos and minimalist design principles.</p>
+
+                <h2>My Footprints</h2>
+                <div id="showDataJSON"></div>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Eric Tsai. All rights reserved.</p>
+    </footer>
 
     <script>
-
-        /*
-        * RENDERING THE JSON TABLE
-        * Get JSON data from file
-        * Get headers from retrieved data
-        * Set headers for table
-        * Add data to table
-        * Add table to DOM
-        */
+        // Your existing JavaScript for rendering the JSON table
         fetch('./list_data.json')
             .then(response => response.json())
             .then(data => {
-
-                /*
-                This section creates the base table and finds the root json node.
-                */
                 var jsonTable = document.createElement("table");
-                var tr = jsonTable.insertRow(-1);   
-                jsonTable.style.width = "75%";
+                var tr = jsonTable.insertRow(-1);
+                jsonTable.style.width = "100%";
                 let root;
                 for (let prop in data) {
                     root = prop;
                 }
 
-                /*
-                This section selects the headers for the table
-                */
                 let headers = Object.keys(data[root][0]);
                 headers.forEach(header => {
-                    var th = document.createElement("th");      
+                    var th = document.createElement("th");
                     th.innerHTML = header;
                     tr.appendChild(th);
-                })              
-                /*
-                This section adds the data into each row of the list
-                */
+                })
+
                 let items = Object.keys(data[root]);
                 items.forEach(item => {
                     tr = jsonTable.insertRow(-1);
@@ -73,12 +58,11 @@
                        tabCell.innerHTML = data[root][item][key];
                     }
                 })
-                /*
-                This section adds the table to the HTML
-                */
+
                 var divContainer = document.getElementById("showDataJSON");
                 divContainer.innerHTML = "";
                 divContainer.appendChild(jsonTable);
             });
-    </script>  
+    </script>
+</body>
 </html>
